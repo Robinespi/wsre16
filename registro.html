@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+	<meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
+	<title>Registro</title>
+	
+	<script>
+	function vervalores(){
+		var sAux="";
+		var frm = document.getElementById("registro");
+		for (i=1;i<frm.elements.length;i++)
+		{ sAux += "NOMBRE: " + frm.elements[i].name + " ";
+		sAux += "VALOR: " + frm.elements[i].value + "\n" ;
+		}
+		alert(sAux);
+	}
+	</script>
+	
+	</head>
+
+	<body>
+	<form id='registro' name='registro' onSubmit='vervalores()'>
+	Nombre:
+	<input type="text" value=""><br>
+	Apellidos:
+	<input type="text" value=""><br>
+	E-mail:
+	<input type="text" value=""><br>
+	Contraseña:
+	<input type="text" value=""><br>
+	Numero telefono:
+	<input type="text" value=""><br>
+	Especialidad:
+	<input type="text" value=""><br>
+	
+	<input type="submit" value="Registrar">
+	</form>
+	
+	
+	
+	
+	</body>
+
+
+
+
+
+
+
+
+
+
+</html>
