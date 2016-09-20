@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+	<meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
+	<title>Registro</title>
+	<link rel='stylesheet' type='text/css' href='registro.css' />
+	<script>
+	function vervalores(){
+		var sAux="";
+		var frm = document.getElementById("registro");
+		for (i=1;i<frm.elements.length;i++)
+		{ sAux += "NOMBRE: " + frm.elements[i].name + " ";
+		sAux += "VALOR: " + frm.elements[i].value + "\n" ;
+		}
+		alert(sAux);
+	}
+	</script>
+	
+	</head>
+
+	<body>
+	<center>
+	<p> *Obligatorio</p>
+	<form id='registro' name='registro' onSubmit='vervalores()' enctype="multipart/form-data">
+	<table borde="0">
+	
+	<tr>
+	<td>Nombre(*):</td>
+	<td><input type="text" name='Nombre' id='Nombre'  value=""></td>
+	</tr>
+	
+	<tr>
+	<td>Apellidos(*):</td>
+	<td><input type="text" name='Apellidos' id='Apellidos' value=""></td>
+	</tr>
+	
+	<tr>
+	<td>E-mail(*):</td>
+	<td><input type="text" name='E-mail' id='E-mail' value=""></td>
+	</tr>
+	
+	<tr>
+	<td>Contraseña(*):</td>
+	<td><input type="password" name='Contraseña' id='Contraseña' value=""></td>
+	</tr>
+	
+	<tr>
+	<td>Numero telefono(*):</td>
+	<td><input type="text" name='Numero telefono' id='Numero telefono' value=""></td>
+	</tr>
+	
+	<tr>
+	<td>Especialidad(*):</td>
+	<td><select name='Especialidad' id='Especialidad'>
+	<option value='Ingenieria del Software'>Ingenieria del Software</option>
+	<option value='Ingenieria de Computadores'>Ingenieria de Computadores</option>
+	<option value='Ingenieria de la Computacion'>Ingenieria de la Computacion</option>
+	</select>
+	</td>
+	</tr>
+	
+	<tr>
+	<td>Tecnologia y herramientas en las que estas interesado(Opcional):</td>
+	<td><input type="checkbox" name="html" value="html">HTML
+	<input type="checkbox" name="css" value="css">CSS
+	<input type="checkbox" name="php" value="php">PHP
+	<input type="checkbox" name="javascript" value="javascript">JavaScript</td>
+	</tr>
+	<tr>
+	<td>Foto de perfil(Opcional):</td>
+	<td><input type="file" name='imagen'></td>
+	</tr>
+	<tr>
+	<td><input type="submit" name='Registrar' id='Registrar' value="Registrar"></td>
+	</tr>
+	</table>
+	</form>
+	
+	</center>
+	
+	<p align='center'><a href='layout.html'>Volver a la pagina de inicio</a></p>
+	</body>
+
+
+
+
+
+
+
+
+
+
+</html>
