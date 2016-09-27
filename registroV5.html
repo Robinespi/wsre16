@@ -11,37 +11,37 @@
 	<body>
 	<center>
 	<p> *Obligatorio</p>
-	<form id='registro' action='nova.php' name='registro' onSubmit='return checkform()' enctype="multipart/form-data">
+	<form id='registro' action='nova.php' name='registro' enctype="multipart/form-data">
 	<table borde="0">
 	
 	<tr>
 	<td>Nombre(*):</td>
-	<td><input type="text" name='Nombre' id='Nombre'  value=""></td>
+	<td><input type="text" name='Nombre' id='Nombre'  value="" required pattern="^[a-zA-Z]+$"></td>
 	</tr>
 	
 	<tr>
 	<td>Apellidos(*):</td>
-	<td><input type="text" name='Apellidos' id='Apellidos' value=""></td>
+	<td><input type="text" name='Apellidos' id='Apellidos' value="" required pattern="^([a-zA-Z])+[ ]([a-zA-Z])+$"></td>
 	</tr>
 	
 	<tr>
 	<td>E-mail(*):</td>
-	<td><input type="text" name='E-mail' id='E-mail' value=""></td>
+	<td><input type="email" name='E-mail' id='E-mail' value=""  required pattern="^([a-z])+[0-9][0-9][0-9]@ikasle\.ehu\.[e]u?[s]$"></td>
 	</tr>
 	
 	<tr>
 	<td>Contraseña(*):</td>
-	<td><input type="password" name='Contraseña' id='Contraseña' value=""></td>
+	<td><input type="password" name='Contraseña' id='Contraseña' value="" required pattern="^[a-zA-Z0-9]+$"></td>
 	</tr>
 	
 	<tr>
 	<td>Numero telefono(*):</td>
-	<td><input type="text" name='Numero telefono' id='Numero telefono' value=""></td>
+	<td><input type="tel" name='Numero telefono' id='Numero telefono' value="" required pattern="[0-9]{9}"></td>
 	</tr>
 	
 	<tr>
 	<td>Especialidad(*):</td>
-	<td id='otra'><select name='Especialidad' id='Especialidad'>
+	<td id='otra'><select name='Especialidad' id='Especialidad' required>
 	<option value='Ingenieria del Software'>Ingenieria del Software</option>
 	<option value='Ingenieria de Computadores'>Ingenieria de Computadores</option>
 	<option value='Ingenieria de la Computacion'>Ingenieria de la Computacion</option>
@@ -71,15 +71,7 @@
 	</center>
 	
 	<p align='center'><a href='layout.html'>Volver a la pagina de inicio</a></p>
+
+
 	</body>
-
-
-
-
-
-
-
-
-
-
 </html>
