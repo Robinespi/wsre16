@@ -11,7 +11,7 @@
 	<body>
 	<center>
 	<p> *Obligatorio</p>
-	<form id='registro' action='nova.php' name='registro' onSubmit='return checkform()' enctype="multipart/form-data">
+	<form id='registro' method="post" action='registrar.php' name='registro' onSubmit='return checkform()' enctype="multipart/form-data">
 	<table borde="0">
 	
 	<tr>
@@ -26,7 +26,7 @@
 	
 	<tr>
 	<td>E-mail(*):</td>
-	<td><input type="text" name='E-mail' id='E-mail' value=""></td>
+	<td><input type="text" name='Email' id='E-mail' value=""></td>
 	</tr>
 	
 	<tr>
@@ -36,30 +36,30 @@
 	
 	<tr>
 	<td>Numero telefono(*):</td>
-	<td><input type="text" name='Numero telefono' id='Numero telefono' value=""></td>
+	<td><input type="text" name='Numerotelefono' id='Numero telefono' value=""></td>
 	</tr>
 	
 	<tr>
 	<td>Especialidad(*):</td>
-	<td id='otra'><select name='Especialidad' id='Especialidad'>
-	<option value='Ingenieria del Software'>Ingenieria del Software</option>
-	<option value='Ingenieria de Computadores'>Ingenieria de Computadores</option>
-	<option value='Ingenieria de la Computacion'>Ingenieria de la Computacion</option>
-	<option value='Otra' onClick='javascript:CEspecialidad()'>Otra especialidad</option>
+	<td id='fotra' name='fotra'>
+	<select name='Especialidad' id='Especialidad' onChange='javascript:CEspecialidad()'>
+	<option value='Ingenieria del Software' >Ingenieria del Software</option>
+	<option value='Ingenieria de Computadores' >Ingenieria de Computadores</option>
+	<option value='Ingenieria de la Computacion' >Ingenieria de la Computacion</option>
+	<option value='otra'>Otra especialidad</option>
 	</select>
 	</td>
 	</tr>
 	
 	<tr>
 	<td>Tecnologia y herramientas en las que estas interesado(Opcional):</td>
-	<td><input type="checkbox" name="html" value="html">HTML
-	<input type="checkbox" name="css" value="css">CSS
-	<input type="checkbox" name="php" value="php">PHP
-	<input type="checkbox" name="javascript" value="javascript">JavaScript</td>
+	<td>
+	<textarea rows="4" cols="40" id="interes" name="interes"></textarea>
+	</td>
 	</tr>
 	<tr>
 	<td>Foto de perfil(Opcional):</td>
-	<td><img id="imagen"  width="100" height="100"/>
+	<td><img id="imagen" name= 'foto' src="images/avatar.jpg" width="100" height="100"/>
 	<input type="file" name='img' onChange="document.getElementById('imagen').src=window.URL.createObjectURL(this.files[0])"></td>
 	</tr>
 	<tr>

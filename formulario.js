@@ -8,8 +8,6 @@ function checkform(){
 	var email
 	var contraseña
 	var numt
-	var especialidad
-	var expr
 	
 	
 	nombre= document.getElementById("Nombre").value
@@ -17,14 +15,11 @@ function checkform(){
 	email= document.getElementById("E-mail").value
 	contraseña= document.getElementById("Contraseña").value
 	numt= document.getElementById("Numero telefono").value
-	especialidad= document.getElementById("Especialidad").value
-	
 		
 	
 	if(!CNombre(nombre) || !CApellido(apellido) || !CEmail(email) || !CContraseña(contraseña) || !CNumt(numt))
 	return false;
 	else return true;
-	
 }
 
 function CNombre(nombre){
@@ -60,7 +55,7 @@ function CApellido(apellido){
 
 function CEmail(email){
 	
-	expr=/^([a-z])+[0-9][0-9][0-9]@ikasle\.ehu\.[e]u?[s]$/;
+	expr=/^([a-z]){2,}[0-9][0-9][0-9]@ikasle\.ehu\.[e]u?[s]$/;
 	
 	if(email.length == 0){
 		
@@ -123,12 +118,26 @@ function CNumt(numt){
 function CEspecialidad(){
 	
 	
+	var t = document.getElementById('fotra');
+	var txt = document.getElementById('txotra');
+	
+	if(document.getElementById('Especialidad').value == 'otra'){
+	if(!txt){
 	var r = document.createElement('input'); 
 	var itype = 'text';
 	var idotra = 'txotra';
+	var name = 'txotra';
+	var value = 'Probando el valor';
 	r.setAttribute('type',itype);
 	r.setAttribute('id',idotra);
-	var t = document.getElementById('otra'); 
-	t.appendChild(r); 
-	
+	r.setAttribute('name', name);
+	r.setAttribute('value', value);
+		t.appendChild(r); }
+		}
+	else {
+		if(txt){
+			padre = txt.parentNode;
+			padre.removeChild(txt);
+		}
+	}
 }
