@@ -9,13 +9,13 @@ function subir_fichero($nombre_fichero)
     {
         $img_file = $_FILES[$nombre_fichero]['name'];
         $img_type = $_FILES[$nombre_fichero]['type'];
-        echo 1;
+        
         
         if (((strpos($img_type, "gif") || strpos($img_type, "jpeg") ||
 	strpos($img_type, "jpg")) || strpos($img_type, "png")))
         {
            
-            echo 2;
+            
             if (move_uploaded_file($tmp_name, $directorio_destino . '/' . $img_file))
             {
                 return true;

@@ -71,7 +71,6 @@
 	</center>
 	
 	<p align='center'><a href='layout.html'>Volver a la pagina de inicio</a></p>
-	<p align="center"><a href="VerUsuarios.php">Ver datos de la bases de datos</a></p>
 	</body>
 
 
@@ -89,7 +88,8 @@
 	$nombre = $_POST['Nombre'];
 	$apellidos = $_POST['Apellidos'];
 	$email = $_POST['Email'];
-	$contrasena = $_POST['Contraseña'];
+	$contra = $_POST['Contraseña'];
+	$contrasena= MD5($contra);
 	$numt = $_POST['Numerotelefono'];
 	$interes = $_POST['interes'];
 	
@@ -105,7 +105,7 @@
 	
 	$error = '';
 	
-	$link = mysqli_connect("localhost","root","","Quiz");
+	$link = mysqli_connect("mysql.hostinger.es","u349629874_espi","Pepitogrillo","u349629874_quiz");
 	if(!$link)
 	{
 		
@@ -115,37 +115,51 @@
 	
 	$error=  vCorre($email);
 	
-	if($error == ''){
-	
-	if(subir_fichero($nombrei)){
-	
-	$directorio_destino = "images";
-	$img_file = $_FILES[$nombrei]['name'];
-	$ruta= $directorio_destino . '/' . $img_file;
-	$sql="INSERT INTO Usuario(Nombre,Apellidos,Email,Contrasena,NumeroTelefono,Especialidad,Interes,Imagen)VALUES('$nombre','$apellidos','$email','$contrasena',$numt,'$especialidad','$interes','$ruta')";
-	if(!mysqli_query($link,$sql))
-	{
+		if($error == ''){
+			$tmp_name = $_FILES[$nombrei]['tmp_name'];
+			if(!is_uploaded_file($tmp_name)){
+				
+				$ruta2= "images/avatar.jpg";
+				$sql2="INSERT INTO usuario(Nombre,Apellidos,Email,Contrasena,NumeroTelefono,Especialidad,Interes,Imagen)VALUES('$nombre','$apellidos','$email','$contrasena',$numt,'$especialidad','$interes','$ruta2')";
+				if(!mysqli_query($link,$sql2))
+				{
 		
-		die('Error'.mysqli_error($link));
+					die('Error'.mysqli_error($link));
 		
-	}else
-	header('location:registrado.php');
-	}else{
+				}else
+				header('location:registrado.php');
+				
+			
+			}
+		else 
+			{
+				if(subir_fichero($nombrei)){
+	
+				$directorio_destino = "images";
+				$img_file = $_FILES[$nombrei]['name'];
+				$ruta= $directorio_destino . '/' . $img_file;
+				$sql="INSERT INTO usuario(Nombre,Apellidos,Email,Contrasena,NumeroTelefono,Especialidad,Interes,Imagen)VALUES('$nombre','$apellidos','$email','$contrasena',$numt,'$especialidad','$interes','$ruta')";
+				if(!mysqli_query($link,$sql))
+				{
 		
-		die('Error'."al subir la imagen");
-	}
-	
-	}
-	else
-	{
+					die('Error'.mysqli_error($link));
 		
-		die('Error'.$error);
+				}else
+				header('location:registrado.php');
+			}
+			else{
 		
-	}
-	
-	
-	
-	
+			die('Error'."al subir la imagen");
+			}
+			}
+		
+		}
+		else
+		{
+		
+			die('Error'.$error);
+		
+		}
 	mysqli_close($link);
 	}
 	
