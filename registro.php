@@ -60,7 +60,7 @@
 	<tr>
 	<td>Foto de perfil(Opcional):</td>
 	<td><img id="imagen" name= 'foto' src="images/avatar.jpg" width="100" height="100"/>
-	<input type="file" name='img' onChange="document.getElementById('imagen').src=window.URL.createObjectURL(this.files[0])"></td>
+	<input type="file" name='img' id='img' onChange="document.getElementById('imagen').src=window.URL.createObjectURL(this.files[0])"></td>
 	</tr>
 	<tr>
 	<td><input type="submit" name='Registrar' id='Registrar' value="Registrar"></td>
@@ -75,11 +75,57 @@
 
 
 
-
-
-
-
-
-
-
 </html>
+
+
+<?php
+	
+	if(isset($_REQUEST['email'])){
+		
+	require_once('verificar.php');
+	
+	$nombre = $_POST['Nombre'];
+	$apellidos = $_POST['Apellidos'];
+	$email = $_POST['Email'];
+	$contrasena = $_POST['Contraseña'];
+	$numt = $_POST['Numerotelefono'];
+	$especialidad = $_POST['Especialidad'];
+	$interes = $_POST['interes'];
+	
+	$error = '';
+	
+	$link = mysqli_connect("localhost","root","","Quiz");
+	if(!$link)
+	{
+		
+		echo"Fallo al conectar a la base de datos".$link->connect_error;
+		
+	}
+	
+	$error=  vCorre($email);
+	
+	if($error == ''){
+	
+	
+	$sql="INSERT INTO Usuario(Nombre,Apellidos,Email,Contrasena,NumeroTelefono,Especialidad,Interes)VALUES('$nombre','$apellidos','$email','$contrasena',$numt,'$especialidad','$interes')";
+	if(!mysqli_query($link,$sql))
+	{
+		
+		die('Error'.mysqli_error($link));
+		
+	}
+	echo"Datos añadidos correctamente";
+	}
+	else
+	{
+		
+		die('Error'.$error);
+		
+	}
+	
+	echo '<p align="center"><a href="VerUsuarios.php">Ver datos de la bases de datos</a></p>';
+	
+	mysqli_close($link);
+	}
+	else{echo "Introduce el e-mail";}
+?>
