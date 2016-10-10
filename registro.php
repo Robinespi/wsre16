@@ -71,6 +71,7 @@
 	</center>
 	
 	<p align='center'><a href='layout.html'>Volver a la pagina de inicio</a></p>
+	<p align="center"><a href="VerUsuarios.php">Ver datos de la bases de datos</a></p>
 	</body>
 
 
@@ -83,18 +84,28 @@
 	if(isset($_POST['Email'])){
 		
 	require_once('verificar.php');
+	require_once('SubirFoto.php');
 	
 	$nombre = $_POST['Nombre'];
 	$apellidos = $_POST['Apellidos'];
 	$email = $_POST['Email'];
 	$contrasena = $_POST['Contraseña'];
 	$numt = $_POST['Numerotelefono'];
-	$especialidad = $_POST['Especialidad'];
 	$interes = $_POST['interes'];
+	
+	$espe= $_POST['Especialidad'];
+	if($espe == 'otra'){
+		
+		$especialidad = $_POST['txotra'];
+		
+	}else
+	$especialidad = $_POST['Especialidad'];
+	
+	$nombrei= "img";
 	
 	$error = '';
 	
-	$link = mysqli_connect("mysql.hostinger.es","u349629874_espi","Pepitogrillo","u349629874_quiz");
+	$link = mysqli_connect("localhost","root","","Quiz");
 	if(!$link)
 	{
 		
@@ -106,8 +117,12 @@
 	
 	if($error == ''){
 	
+	if(subir_fichero($nombrei)){
 	
-	$sql="INSERT INTO usuario(Nombre,Apellidos,Email,Contrasena,NumeroTelefono,Especialidad,Interes)VALUES('$nombre','$apellidos','$email','$contrasena',$numt,'$especialidad','$interes')";
+	$directorio_destino = "images";
+	$img_file = $_FILES[$nombrei]['name'];
+	$ruta= $directorio_destino . '/' . $img_file;
+	$sql="INSERT INTO Usuario(Nombre,Apellidos,Email,Contrasena,NumeroTelefono,Especialidad,Interes,Imagen)VALUES('$nombre','$apellidos','$email','$contrasena',$numt,'$especialidad','$interes','$ruta')";
 	if(!mysqli_query($link,$sql))
 	{
 		
@@ -115,6 +130,11 @@
 		
 	}else
 	header('location:registrado.php');
+	}else{
+		
+		die('Error'."al subir la imagen");
+	}
+	
 	}
 	else
 	{
@@ -122,6 +142,7 @@
 		die('Error'.$error);
 		
 	}
+	
 	
 	
 	
