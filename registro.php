@@ -11,7 +11,7 @@
 	<body>
 	<center>
 	<p> *Obligatorio</p>
-	<form id='registro' method="post" action='registrar.php' name='registro' onSubmit='return checkform()' enctype="multipart/form-data">
+	<form id='registro' method="post"  name='registro' onSubmit='return checkform()' enctype="multipart/form-data">
 	<table borde="0">
 	
 	<tr>
@@ -80,7 +80,7 @@
 
 <?php
 	
-	if(isset($_REQUEST['email'])){
+	if(isset($_POST['Email'])){
 		
 	require_once('verificar.php');
 	
@@ -94,7 +94,7 @@
 	
 	$error = '';
 	
-	$link = mysqli_connect("localhost","root","","Quiz");
+	$link = mysqli_connect("mysql.hostinger.es","u349629874_espi","Pepitogrillo","u349629874_quiz");
 	if(!$link)
 	{
 		
@@ -107,14 +107,14 @@
 	if($error == ''){
 	
 	
-	$sql="INSERT INTO Usuario(Nombre,Apellidos,Email,Contrasena,NumeroTelefono,Especialidad,Interes)VALUES('$nombre','$apellidos','$email','$contrasena',$numt,'$especialidad','$interes')";
+	$sql="INSERT INTO usuario(Nombre,Apellidos,Email,Contrasena,NumeroTelefono,Especialidad,Interes)VALUES('$nombre','$apellidos','$email','$contrasena',$numt,'$especialidad','$interes')";
 	if(!mysqli_query($link,$sql))
 	{
 		
 		die('Error'.mysqli_error($link));
 		
-	}
-	echo"Datos añadidos correctamente";
+	}else
+	header('location:registrado.php');
 	}
 	else
 	{
@@ -123,9 +123,9 @@
 		
 	}
 	
-	echo '<p align="center"><a href="VerUsuarios.php">Ver datos de la bases de datos</a></p>';
+	
 	
 	mysqli_close($link);
 	}
-	else{echo "Introduce el e-mail";}
+	
 ?>
