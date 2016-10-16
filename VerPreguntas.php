@@ -24,7 +24,7 @@
 		
 	}
 	else{
-	echo '<center><table border=1> <tr> <th> Autor </th> <th> Dificultad </th> <th> Dificultad </th> </tr></center>';
+	echo '<center><table border=1> <tr> <th> Autor </th> <th> Dificultad </th> <th> Pregunta </th> </tr></center>';
 	
 	while($row = mysqli_fetch_array($resultado))
 	{
