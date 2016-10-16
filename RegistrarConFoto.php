@@ -105,7 +105,7 @@
 	
 	$error = '';
 	
-	$link = mysqli_connect("mysql.hostinger.es","u349629874_espi","Pepitogrillo","u349629874_quiz");
+	$link = mysqli_connect("localhost","root","","Quiz");
 	if(!$link)
 	{
 		
@@ -113,7 +113,7 @@
 		
 	}
 	
-	$error=  vCorre($email);
+	$error= vForm($nombre,$apellidos,$email,$contra,$numt);
 	
 		if($error == ''){
 			$tmp_name = $_FILES[$nombrei]['tmp_name'];
