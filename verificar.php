@@ -23,13 +23,15 @@ function vForm($nombre,$apellido,$email,$contra,$tel){
 	return $error;
 }
 
-function vPreg($pregunta,$difi){
+function vPreg($pregunta,$difi,$respuesta){
 	
 	$expr="/^[1-5]$/";
 	
 	$error = '';
 	if($pregunta=='')
 		$error = $error.'<p>Inserte una pregunta</p>';
+	if($respuesta=='')
+		$error = $error.'<p>Inserte una respuesta</p>';
 	if(!preg_match($expr,$difi))
 		$error = $error.'<p>Inserte una dificultad entre 1 y 5</p>';
 	return $error;

@@ -49,7 +49,7 @@
 		echo"Fallo al conectar a la base de datos".$link->connect_error;
 		
 	}
-	$error=vPreg($pregunta,$dificultad);
+	$error=vPreg($pregunta,$dificultad,$respuesta);
 	
 	if ($error == ''){
 	$resultado = mysqli_query($link,"SELECT (Num_preg) FROM preguntas");
