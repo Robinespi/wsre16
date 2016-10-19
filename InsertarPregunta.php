@@ -25,11 +25,12 @@
 
 <?php
 
-	
-
 	session_start();
+	if(session_status() == PHP_SESSION_ACTIVE)
+      	echo '<span class="right" ><a href="cerrar_sesion.php">Logout</a></span>';
+	
 	$usuario=$_SESSION["email"];
-	echo $usuario;
+	
 	
 	if(isset($_POST['pregunta'])){
 	

@@ -43,10 +43,38 @@
 	$cont= mysqli_num_rows($usuarios);
 	
 	if($cont == 1){
+			$resultado = mysqli_query($link,"SELECT * FROM conexiones");
+			if(!$resultado){
+		
+			die('Error'.mysqli_error($link));
+			}
+	
+			$session= mysqli_num_rows($resultado);
+
+			if($session == 0)
+			$num_session=0;
+			else
+			$num_session=$session;
+		
+			$idc="conexion".$num_session;
+			
+			$hora=date("H");
+			$minuto=date("i");
+			$segundo=date("s");
+			$timestamp = $hora.":".$minuto.":".$segundo;
+			$hco=$timestamp;
+			
+			$sqls=("INSERT INTO conexiones(IdC,Email,HCo) VALUES('$idc','$usuario','$hco')");
+			if(!mysqli_query($link,$sqls)){
+				
+				die('Error'.mysqli_error($link));
+				
+			}
+			
 			session_start();
 			$_SESSION["email"]=$usuario;
 			header('location:InsertarPregunta.php');
-			return;	
+				
 					}
 	else{
 		

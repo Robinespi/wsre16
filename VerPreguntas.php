@@ -8,8 +8,7 @@
 <?php
 	
 	
-	
-	$link = mysqli_connect("mysql.hostinger.es","u349629874_espi","Pepitogrillo","u349629874_quiz");
+	$link = mysqli_connect("localhost","root","","Quiz");
 	if(!$link)
 	{
 		
@@ -17,13 +16,15 @@
 		
 	}
 	
+	
+	
 	$resultado = mysqli_query($link,"SELECT * FROM preguntas");
 	if(!$resultado){
 		
 		die('Error'.mysqli_error($link));
 		
 	}
-	else{
+	
 	echo '<center><table border=1> <tr> <th> Autor </th> <th> Dificultad </th> <th> Pregunta </th> </tr></center>';
 	
 	while($row = mysqli_fetch_array($resultado))
@@ -32,8 +33,7 @@
 	
 	}
 	
-	}
 	mysqli_close($link);
-
+	
 
 ?>
