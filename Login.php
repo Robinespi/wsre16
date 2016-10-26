@@ -31,7 +31,7 @@
 	$pass = $_POST['contrasena'];
 	$contrasena = MD5($pass);
 	
-	$link = mysqli_connect("mysql.hostinger.es","u349629874_espi","Pepitogrillo","u349629874_quiz");
+	$link = mysqli_connect("localhost","root","","Quiz");
 	if(!$link)
 	{
 		

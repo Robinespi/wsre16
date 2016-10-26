@@ -16,6 +16,8 @@
 		<input type="text" name='respuesta' id='respuesta' value=''><br>
 		Dificultad
 		<input type="text" name='dificultad' id='dificultad' value=''>
+		Tematica
+		<input type="text" name='tematica' id='tematica' value=''>
 		<input type="submit" name='guardar' id='guardar' value="Enviar Pregunta">
 	</form>
 	</center>
@@ -25,6 +27,9 @@
 
 <?php
 
+
+	
+	
 	session_start();
 	$usuario=$_SESSION["email"];
 	
@@ -32,10 +37,13 @@
 	if(isset($_POST['pregunta'])){
 	
 	require_once('verificar.php');
-		
+	require_once('preguntaxml.php');
+	
+	
 	$pregunta = $_POST['pregunta'];
 	$respuesta = $_POST['respuesta'];
 	$dificultad = $_POST['dificultad'];
+	$tematica = $_POST['tematica'];
 	
 	$error = '';
 	
@@ -46,9 +54,10 @@
 		echo"Fallo al conectar a la base de datos".$link->connect_error;
 		
 	}
-	$error=vPreg($pregunta,$dificultad,$respuesta);
+	$error=vPreg($pregunta,$dificultad,$respuesta,$tematica);
 	
 	if ($error == ''){
+		
 	$resultado = mysqli_query($link,"SELECT (Num_preg) FROM preguntas");
 	if(!$resultado){
 		
@@ -62,15 +71,21 @@
 	else
 	$numero=$cont;
 	
-	$sql="INSERT INTO preguntas(Email,Pregunta,Respuesta,Dificultad,Num_preg)VALUES('$usuario','$pregunta','$respuesta','$dificultad','$numero')";
+	$sql="INSERT INTO preguntas(Email,Pregunta,Respuesta,Dificultad,Num_preg,Tematica)VALUES('$usuario','$pregunta','$respuesta','$dificultad','$numero','$tematica')";
 	if(!mysqli_query($link,$sql))
 				{
 					
 					die('Error'.mysqli_error($link));
 		
-				}else
-					header('location:VerPreguntas.php');
+				}else{
+					if(!addPregunta($pregunta,$respuesta,$dificultad,$tematica)){
+			
+						die("Error con el xml");
+			
+						}
 					
+					header('location:Insertado.php');
+				}
 				
 			
 	}
@@ -80,9 +95,13 @@
 			die('Error'.$error);
 		
 		}
+		
+		
 	mysqli_close($link);
 	
+	
+		
 	}
-	return;
+	
 
 ?>
