@@ -30,5 +30,4 @@
 		<value>asdasd</value>
 		</correctResponse>
 	</assessmentItem>
-</assessmentItems>
-
+<assessmentItem complexity="2" subject="AJAX"><itemBody><p>Probando Ajax</p></itemBody><correctResponse><value>Si</value></correctResponse></assessmentItem><assessmentItem complexity="1" subject="MOYA"><itemBody><p>Hola Moya</p></itemBody><correctResponse><value>Si</value></correctResponse></assessmentItem><assessmentItem complexity="1" subject="Robin"><itemBody><p>Hola Robin</p></itemBody><correctResponse><value>Si</value></correctResponse></assessmentItem><assessmentItem complexity="2" subject="AJAX"><itemBody><p>Probando el AJAX</p></itemBody><correctResponse><value>Si funciona</value></correctResponse></assessmentItem><assessmentItem complexity="2" subject="AJAX"><itemBody><p>Probando el AJAX 2</p></itemBody><correctResponse><value>Si funciona</value></correctResponse></assessmentItem><assessmentItem complexity="2" subject="Pollito"><itemBody><p>Hola pollo</p></itemBody><correctResponse><value>Si</value></correctResponse></assessmentItem></assessmentItems>

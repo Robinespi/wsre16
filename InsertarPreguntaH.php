@@ -1,3 +1,30 @@
+<html>
+	<head>
+	<meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
+	<title>Insertar Pregunta</title>
+	<link rel='stylesheet' type='text/css' href='registro.css' />
+	</head>
+
+	<body>
+	<center>
+	<p> *Obligatorio</p>
+	<form id='insertar' method="post"  name='insertar' onSubmit='return checkform()' enctype="multipart/form-data">
+		
+		Pregunta
+		<textarea rows="1" cols="40" name='pregunta' id='pregunta' value=''></textarea> <br>
+		Respuesta
+		<input type="text" name='respuesta' id='respuesta' value=''><br>
+		Dificultad
+		<input type="text" name='dificultad' id='dificultad' value=''>
+		Tematica
+		<input type="text" name='tematica' id='tematica' value=''>
+		<input type="submit" name='guardar' id='guardar' value="Enviar Pregunta">
+	</form>
+	</center>
+	</body>
+</html>
+
+
 <?php
 
 
@@ -27,7 +54,6 @@
 		echo"Fallo al conectar a la base de datos".$link->connect_error;
 		
 	}
-	echo $dificultad;
 	$error=vPreg($pregunta,$dificultad,$respuesta,$tematica);
 	
 	if ($error == ''){

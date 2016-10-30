@@ -31,7 +31,7 @@
 	$pass = $_POST['contrasena'];
 	$contrasena = MD5($pass);
 	
-	$link = mysqli_connect("localhost","root","","Quiz");
+	$link = mysqli_connect("mysql.hostinger.es","u349629874_espi","Pepitogrillo","u349629874_quiz");
 	if(!$link)
 	{
 		
@@ -73,7 +73,7 @@
 			
 			session_start();
 			$_SESSION["email"]=$usuario;
-			header('location:InsertarPregunta.php');
+			header('location:GestionPreguntas.php');
 				
 					}
 	else{
