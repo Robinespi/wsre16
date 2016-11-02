@@ -28,11 +28,11 @@
 	}
 	$pre_usu= mysqli_num_rows($resultado);
 		
-	echo '<b>'."Preguntas propias/Preguntas totales:".$pre_usu."/".$pre_tot.'</b>';
+	echo '<font color="green">'."Preguntas propias/Preguntas totales:".$pre_usu."/".$pre_tot.'</font>';
 		
 		
 	}
-	else echo '<b>'."No estas logueado".'</b>';
+	else echo '<font color="blue">'."No estas logueado".'</font>';
 
 
 

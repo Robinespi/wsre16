@@ -5,6 +5,18 @@
 	<title>Gestionar Pregunta</title>
 	<link rel='stylesheet' type='text/css' href='registro.css' />
 	<script src="GestionPreguntas.js" language="javascript" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script>
+	//Llamar la funcion cada 5s
+	setInterval(preguntas,5000);
+	//AJAX ver Num preguntas JQuery
+	function verNumPreguntas(){
+    $(document).ready(function(){
+        $.ajax({url: "NumPreguntas.php", success: function(result){$("#npreguntas").html(result);}});
+        });
+		}
+	
+	</script>
 	</head>
 
 	<body>
