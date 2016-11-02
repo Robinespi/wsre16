@@ -27,7 +27,6 @@
 		echo"Fallo al conectar a la base de datos".$link->connect_error;
 		
 	}
-	echo $dificultad;
 	$error=vPreg($pregunta,$dificultad,$respuesta,$tematica);
 	
 	if ($error == ''){

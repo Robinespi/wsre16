@@ -9,6 +9,7 @@
 
 	<body>
 	<center>
+	<div id="npreguntas"><b></b></div>
 	<p> *Obligatorio</p>
 	<form id='insertar' method="post"  name='insertar' onSubmit='return checkform()' enctype="multipart/form-data">
 		

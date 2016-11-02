@@ -1,3 +1,6 @@
+preguntas();
+setInterval(preguntas,5000);
+
 //AJAX METER PREGUNTAS
 
 	function meterPregunta(pregunta,respuesta,dificultad,tema){
@@ -20,7 +23,7 @@
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send("pregunta="+pregunta+"&respuesta="+respuesta+"&dificultad="+dificultad+"&tematica="+tema);
 }
-
+//AJAX ver preguntas
 function verpreguntas(){
 	
 	xmlhttp= new XMLHttpRequest();
@@ -35,6 +38,24 @@ function verpreguntas(){
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send();
 	
+	
+	
+	
+}
+//AJAX ver Num preguntas
+function preguntas(){
+	
+	xmlhttp= new XMLHttpRequest();
+	xmlhttp= new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function()
+	{
+		if(xmlhttp.readyState==4 && xmlhttp.status==200){document.getElementById("npreguntas").innerHTML=xmlhttp.responseText;}
+		
+	}
+	
+	xmlhttp.open("POST","NumPreguntas.php",true);
+	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xmlhttp.send();
 	
 	
 	
