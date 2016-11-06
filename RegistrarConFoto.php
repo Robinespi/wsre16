@@ -6,6 +6,7 @@
 	<title>Registro</title>
 	<link rel='stylesheet' type='text/css' href='registro.css' />
 	<script src="formulario.js" language="javascript" type="text/javascript"></script>
+	<script src="registrar.js" language="javascript" type="text/javascript"></script>
 	</head>
 
 	<body>
@@ -26,12 +27,14 @@
 	
 	<tr>
 	<td>E-mail(*):</td>
-	<td><input type="text" name='Email' id='E-mail' value=""></td>
+	<td><input type="text" name='Email' id='E-mail' value="" onChange="javascript:verificarc(Email.value)"></td>
+	<td><div id="everifi"></div></td>
 	</tr>
 	
 	<tr>
 	<td>Contraseña(*):</td>
-	<td><input type="password" name='Contraseña' id='Contraseña' value=""></td>
+	<td><input type="password" name='Contraseña' id='Contraseña' value="" onChange="javascript:verificarcontra(Contraseña.value)"></td>
+	<td><div id="cverifi"></div></td>
 	</tr>
 	
 	<tr>
@@ -63,11 +66,11 @@
 	<input type="file" name='img' id='img' onChange="document.getElementById('imagen').src=window.URL.createObjectURL(this.files[0])"></td>
 	</tr>
 	<tr>
-	<td><input type="submit" name='Registrar' id='Registrar' value="Registrar"></td>
+	<td><input type="button" name='Registrar' id='Registrar' value="Registrar" disabled="true" onClick="javascript:registrar(Nombre.value,Apellidos.value,Email.value,Contraseña.value,Numerotelefono.value,Especialidad.value,interes.value,img)"></td>
 	</tr>
 	</table>
 	</form>
-	
+	<div id="registrado"></div>
 	</center>
 	
 	<p align='center'><a href='layout.html'>Volver a la pagina de inicio</a></p>
@@ -78,89 +81,3 @@
 </html>
 
 
-<?php
-	
-	if(isset($_POST['Email'])){
-		
-	require_once('verificar.php');
-	require_once('SubirFoto.php');
-	
-	$nombre = $_POST['Nombre'];
-	$apellidos = $_POST['Apellidos'];
-	$email = $_POST['Email'];
-	$contra = $_POST['Contraseña'];
-	$contrasena= MD5($contra);
-	$numt = $_POST['Numerotelefono'];
-	$interes = $_POST['interes'];
-	
-	$espe= $_POST['Especialidad'];
-	if($espe == 'otra'){
-		
-		$especialidad = $_POST['txotra'];
-		
-	}else
-	$especialidad = $_POST['Especialidad'];
-	
-	$nombrei= "img";
-	
-	$error = '';
-	
-	$link = mysqli_connect("localhost","root","","Quiz");
-	if(!$link)
-	{
-		
-		echo"Fallo al conectar a la base de datos".$link->connect_error;
-		
-	}
-	
-	$error= vForm($nombre,$apellidos,$email,$contra,$numt);
-	
-		if($error == ''){
-			$tmp_name = $_FILES[$nombrei]['tmp_name'];
-			if(!is_uploaded_file($tmp_name)){
-				
-				$ruta2= "images/avatar.jpg";
-				$sql2="INSERT INTO usuario(Nombre,Apellidos,Email,Contrasena,NumeroTelefono,Especialidad,Interes,Imagen)VALUES('$nombre','$apellidos','$email','$contrasena',$numt,'$especialidad','$interes','$ruta2')";
-				if(!mysqli_query($link,$sql2))
-				{
-		
-					die('Error'.mysqli_error($link));
-		
-				}else
-				header('location:registrado.php');
-				
-			
-			}
-		else 
-			{
-				if(subir_fichero($nombrei)){
-	
-				$directorio_destino = "images";
-				$img_file = $_FILES[$nombrei]['name'];
-				$ruta= $directorio_destino . '/' . $img_file;
-				$sql="INSERT INTO usuario(Nombre,Apellidos,Email,Contrasena,NumeroTelefono,Especialidad,Interes,Imagen)VALUES('$nombre','$apellidos','$email','$contrasena',$numt,'$especialidad','$interes','$ruta')";
-				if(!mysqli_query($link,$sql))
-				{
-		
-					die('Error'.mysqli_error($link));
-		
-				}else
-				header('location:registrado.php');
-			}
-			else{
-		
-			die('Error'."al subir la imagen");
-			}
-			}
-		
-		}
-		else
-		{
-		
-			die('Error'.$error);
-		
-		}
-	mysqli_close($link);
-	}
-	
-?>
