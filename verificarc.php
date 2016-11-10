@@ -4,11 +4,11 @@ require_once('nusoap-0.9.5/lib/class.wsdlcache.php');
 
 $email=$_POST['email'];
 
-$cliente=new nusoap_client('http://sw14.hol.es/ServiciosWeb/comprobarmatricula.php?wsdl',true);
+$cliente=new nusoap_client('http://cursodssw.hol.es/comprobarmatricula.php?wsdl',true);
 $resultado= $cliente->call('comprobar',array('x'=>$email));
 print_r($resultado);
 
-    // AÑADIR ESTE CODIGO AL FINAL DEL PHP QUE CONTIENE LA LLAMADA AL SERVICIO
+    /*// AÑADIR ESTE CODIGO AL FINAL DEL PHP QUE CONTIENE LA LLAMADA AL SERVICIO
     //Codigo para debugear y ver la respuesta y posibles errores, comentar cuando se comprueba que está correcto el servicio y la llamada
     $err = $cliente->getError();
     if ($err) {
@@ -32,7 +32,7 @@ print_r($resultado);
     {
         //var_dump ($response);
         echo "Codigo: ".$response['Codigo'];
-    }
+    }*/
 
 
 ?>

@@ -3,10 +3,11 @@ require_once('nusoap-0.9.5/lib/nusoap.php');
 require_once('nusoap-0.9.5/lib/class.wsdlcache.php');
 
 $contraseña=$_POST['contraseña'];
+$clave=$_POST['clave'];
 
 //$cliente=new nusoap_client('http://localhost/wsre16/ComprobarContrasena.php?wsdl',true);
 $cliente=new nusoap_client('http://raespinosa.esy.es/ComprobarContrasena.php?wsdl',true);
-$resultado= $cliente->call('comprobar',array('x'=>$contraseña));
+$resultado= $cliente->call('comprobar',array('x'=>$contraseña,'y'=>$clave));
 print_r($resultado);
 
 /*// AÑADIR ESTE CODIGO AL FINAL DEL PHP QUE CONTIENE LA LLAMADA AL SERVICIO

@@ -3,13 +3,19 @@
 <html>
 	<head>
 	<meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
+	<style type="text/css">
+	html, body { height: 100%; margin: 0; padding: 0; }
+	#map { height: 50%; width: 50%; }
+	</style>
 	<title>Creditos</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	
 	<link rel='stylesheet' type='text/css' href='registro.css' />
 	</head>
 
 	<body>
 	
-	<table align="center">
+	<table id="creditos"align="center">
 	<tr>
 	
 	<td>
@@ -34,6 +40,19 @@
 	</tr>
 	</table>
 	
+	<table id="infocliente" align="center" border="1"></table>
+	<script>
+	
+	$.getJSON("http://ip-api.com/json/?callback=?", function(data) {  
+	var tabla_cliente;
+	tabla_cliente+="<tr><td><h3>Cliente</h3></td></tr>";
+    $.each(data, function(k, v) {
+		if(k=="country" || k=="regionName" || k=="timezone"){tabla_cliente+="<tr><td>" + k + "</td><td><b>" + v + "</b></td></tr>";}
+           });
+		   $("#infocliente").html(tabla_cliente);
+       });
+	   
+	</script>
 	
 	<p align='center'><a href='layout.html'>Volver a la pagina de inicio</a></p>
 	

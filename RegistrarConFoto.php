@@ -33,8 +33,10 @@
 	
 	<tr>
 	<td>Contraseña(*):</td>
-	<td><input type="password" name='Contraseña' id='Contraseña' value="" onChange="javascript:verificarcontra(Contraseña.value)"></td>
-	<td><div id="cverifi"></div></td>
+	<td><input type="password" name='Contraseña' id='Contraseña' value="" onChange="javascript:verificarcontra(Contraseña.value,clave.value)">
+	Clave(*):
+	<input type="text" name="clave" id="clave" value="" onChange="javascript:verificarcontra(Contraseña.value,clave.value)"> </td>
+	<td><div id="cverifi" ></div></td>
 	</tr>
 	
 	<tr>
