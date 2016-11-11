@@ -24,15 +24,15 @@
 	$nombrei= "img";
 	
 	$error = '';
-	
-	$link = mysqli_connect("mysql.hostinger.es","u349629874_espi","Pepitogrillo","u349629874_quiz");
+	$link = mysqli_connect("localhost","root","","Quiz");
+	//$link = mysqli_connect("mysql.hostinger.es","u349629874_espi","Pepitogrillo","u349629874_quiz");
 	if(!$link)
 	{
 		
 		echo"Fallo al conectar a la base de datos".$link->connect_error;
 		
 	}
-	
+	$rol="alumno";
 	$error= vForm($nombre,$apellidos,$email,$contra,$numt);
 	
 		if($error == ''){
@@ -40,7 +40,7 @@
 			if(!is_uploaded_file($tmp_name)){
 				
 				$ruta2= "images/avatar.jpg";
-				$sql2="INSERT INTO usuario(Nombre,Apellidos,Email,Contrasena,NumeroTelefono,Especialidad,Interes,Imagen)VALUES('$nombre','$apellidos','$email','$contrasena',$numt,'$especialidad','$interes','$ruta2')";
+				$sql2="INSERT INTO usuario(Nombre,Apellidos,Email,Contrasena,NumeroTelefono,Especialidad,Interes,Imagen,Rol)VALUES('$nombre','$apellidos','$email','$contrasena',$numt,'$especialidad','$interes','$ruta2','$rol')";
 				if(!mysqli_query($link,$sql2))
 				{
 		
@@ -58,7 +58,7 @@
 				$directorio_destino = "images";
 				$img_file = $_FILES[$nombrei]['name'];
 				$ruta= $directorio_destino . '/' . $img_file;
-				$sql="INSERT INTO usuario(Nombre,Apellidos,Email,Contrasena,NumeroTelefono,Especialidad,Interes,Imagen)VALUES('$nombre','$apellidos','$email','$contrasena',$numt,'$especialidad','$interes','$ruta')";
+				$sql="INSERT INTO usuario(Nombre,Apellidos,Email,Contrasena,NumeroTelefono,Especialidad,Interes,Imagen,Rol)VALUES('$nombre','$apellidos','$email','$contrasena',$numt,'$especialidad','$interes','$ruta','$rol')";
 				if(!mysqli_query($link,$sql))
 				{
 		

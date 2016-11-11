@@ -5,14 +5,13 @@
 	<meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
 	<title>Registro</title>
 	<link rel='stylesheet' type='text/css' href='registro.css' />
-	<script src="formulario.js" language="javascript" type="text/javascript"></script>
 	<script src="registrar.js" language="javascript" type="text/javascript"></script>
 	</head>
 
 	<body>
 	<center>
 	<p> *Obligatorio</p>
-	<form id='registro' method="post"  name='registro' onSubmit='return checkform()' enctype="multipart/form-data">
+	<form id='registro' method="post"  name='registro' enctype="multipart/form-data">
 	<table borde="0">
 	
 	<tr>
@@ -37,6 +36,11 @@
 	Clave(*):
 	<input type="text" name="clave" id="clave" value="" onChange="javascript:verificarcontra(Contraseña.value,clave.value)"> </td>
 	<td><div id="cverifi" ></div></td>
+	</tr>
+	
+	<tr>
+	<td>Contraseña(*):</td>
+	<td><input type="password" name='Contraseñav' id='Contraseñav' value="" onChange="javascript:mismaContra(Contraseña.value,Contraseñav.value)">
 	</tr>
 	
 	<tr>
@@ -68,7 +72,7 @@
 	<input type="file" name='img' id='img' onChange="document.getElementById('imagen').src=window.URL.createObjectURL(this.files[0])"></td>
 	</tr>
 	<tr>
-	<td><input type="button" name='Registrar' id='Registrar' value="Registrar" disabled="true" onClick="javascript:registrar(Nombre.value,Apellidos.value,Email.value,Contraseña.value,Numerotelefono.value,Especialidad.value,interes.value,img)"></td>
+	<td><input type="button" name='Registrar' id='Registrar' value="Registrar" disabled="true" onClick="javascript:checkform(Nombre.value,Apellidos.value,Email.value,Contraseña.value,Contraseñav.value,Numerotelefono.value,Especialidad.value,interes.value,img)"></td>
 	</tr>
 	</table>
 	</form>

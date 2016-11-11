@@ -19,7 +19,11 @@ function checkform(){
 	
 	if(!CNombre(nombre) || !CApellido(apellido) || !CEmail(email) || !CContraseña(contraseña) || !CNumt(numt))
 	return false;
-	else return true;
+	else {
+		
+		registrar(Nombre.value,Apellidos.value,Email.value,Contraseña.value,Numerotelefono.value,Especialidad.value,interes.value,img)
+		
+	}return true;
 }
 
 function CNombre(nombre){
