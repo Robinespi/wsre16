@@ -10,6 +10,17 @@
 	<center>
 	<p> *Obligatorio</p>
 	<form id='login' method="post"  name='login' onSubmit='return checkform()' enctype="multipart/form-data">
+	<?php 
+	if(isset($_GET["errorusu"])){
+	$error=$_GET["errorusu"];
+	if($error=="si"){
+		echo '<p>'."Datos Incorrectos".'</p>';
+		} 
+	else { 
+		echo "Introduce tus datos";
+		}
+	}
+	?>
 	Introduce el Usuario
 	<input type='text' name='usuario' id='usuario' value=''><br>
 	Introduce la contraseña
@@ -70,18 +81,28 @@
 				die('Error'.mysqli_error($link));
 				
 			}
+			$row = mysqli_fetch_array($usuarios);
 			
-			session_start();
-			$_SESSION["email"]=$usuario;
-			header('location:GestionPreguntas.php');
-				
+				if($row['Rol']=="alumno"){
+					session_start();
+					$_SESSION["autentificado"]="Si";
+					$_SESSION["email"]=$usuario;
+					$_SESSION["rol"]=$row['Rol'];
+					header('location:GestionPreguntas.php');
 					}
-	else{
+					else if($row['Rol']=="profesor"){
+						session_start();
+						$_SESSION["autentificado"]="Si";
+						$_SESSION["email"]=$usuario;
+						$_SESSION["rol"]=$row['Rol'];
+						header('location:ModificarPreguntas.php');
+					}
+			}
+			else{
 		
-		echo '<p>No se puede conectar</p>';
+					header('location:Login.php?errorusu=si');
 		
-	}
-
+					}
 	}
 
 

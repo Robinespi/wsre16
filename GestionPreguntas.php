@@ -1,4 +1,17 @@
+<?php
+ini_set('session.cookie_lifetime',60);
+session_start();
+//echo session_id();
+	$rol= $_SESSION['rol'];
+	$usuario=$_SESSION['email'];
+	echo '<p>'.$usuario.'</p>';
+	if($rol != "alumno")
+	{
+		header('location:Login.php');
+		exit();
+	}
 
+?>
 <html>
 	<head>
 	<meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
