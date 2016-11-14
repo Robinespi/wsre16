@@ -33,6 +33,7 @@ session_start();
 	</head>
 
 	<body>
+	<div align="right"><a href="logout.php">Logout</a></div>	
 	<center>
 	<div id="npreguntas"><b></b></div>
 	<p> *Obligatorio</p>

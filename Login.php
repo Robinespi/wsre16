@@ -1,5 +1,5 @@
-<html>
 
+<html>
 <head>
 <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
 <title>Login</title>
@@ -9,7 +9,7 @@
 <body>
 	<center>
 	<p> *Obligatorio</p>
-	<form id='login' method="post"  name='login' onSubmit='return checkform()' enctype="multipart/form-data">
+	<form id='login' method="post"  name='login'  enctype="multipart/form-data">
 	<?php 
 	if(isset($_GET["errorusu"])){
 	$error=$_GET["errorusu"];
@@ -27,22 +27,27 @@
 	<input type='password' name='contrasena' id='contrasena' value=''>
 	<input type="submit" name='login' id='login' value="Login">
 	</form>
-		<p align='center'><a href='layout.html'>Volver a la pagina de inicio</a></p>
+		<p align='center'><a href='layout.php'>Volver a la pagina de inicio</a></p>
 	</center>
 </body>
 </html>
 
-
-
 <?php
-	
+	session_start();
+	if(isset($_SESSION['email'])){
+		
+		header('location:layout.php');
+		
+	}
+	else{
 	if(isset($_POST['usuario'])){
 	
 	$usuario = $_POST['usuario'];
 	$pass = $_POST['contrasena'];
 	$contrasena = MD5($pass);
 	
-	$link = mysqli_connect("localhost","root","","Quiz");
+	//$link = mysqli_connect("localhost","root","","Quiz");
+	$link = mysqli_connect("mysql.hostinger.es","u349629874_espi","Pepitogrillo","u349629874_quiz");
 	if(!$link)
 	{
 		
@@ -84,14 +89,14 @@
 			$row = mysqli_fetch_array($usuarios);
 			
 				if($row['Rol']=="alumno"){
-					session_start();
+					
 					$_SESSION["autentificado"]="Si";
 					$_SESSION["email"]=$usuario;
 					$_SESSION["rol"]=$row['Rol'];
 					header('location:GestionPreguntas.php');
 					}
 					else if($row['Rol']=="profesor"){
-						session_start();
+						
 						$_SESSION["autentificado"]="Si";
 						$_SESSION["email"]=$usuario;
 						$_SESSION["rol"]=$row['Rol'];
@@ -104,6 +109,7 @@
 		
 					}
 	}
-
+	}
 
 ?>
+

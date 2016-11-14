@@ -1,5 +1,18 @@
-<!DOCTYPE html>
+<?php
 
+session_start();
+
+	
+	if(isset($_SESSION['email'])){
+		echo '<div align="right"><a href="logout.php">Logout</a></div>';
+	}
+	
+
+
+?>
+
+
+<!DOCTYPE html>
 <html>
 	<head>
 	<meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
@@ -54,7 +67,7 @@
 	   
 	</script>
 	
-	<p align='center'><a href='layout.html'>Volver a la pagina de inicio</a></p>
+	<p align='center'><a href='layout.php'>Volver a la pagina de inicio</a></p>
 	
 	
 	</body>

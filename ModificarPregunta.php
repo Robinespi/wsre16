@@ -1,6 +1,7 @@
 <?php 
 
 	require_once('verificar.php');
+	require_once('VerPreguntasM.php');
 	//require_once('preguntaxml.php');
 	
 	$codigo=$_POST['codigo'];
@@ -10,8 +11,8 @@
 	$tematica = $_POST['tematica'];
 	
 	$error = '';
-	$link = mysqli_connect("localhost","root","","Quiz");
-	//$link = mysqli_connect("mysql.hostinger.es","u349629874_espi","Pepitogrillo","u349629874_quiz");
+	//$link = mysqli_connect("localhost","root","","Quiz");
+	$link = mysqli_connect("mysql.hostinger.es","u349629874_espi","Pepitogrillo","u349629874_quiz");
 	
 	if(!$link)
 	{

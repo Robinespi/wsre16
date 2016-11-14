@@ -22,24 +22,14 @@
 	<link rel='stylesheet' type='text/css' href='registro.css' />
 	<script src="ModificarPreguntas.js" language="javascript" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script>
-	//Llamar la funcion cada 5s
-	setInterval(preguntas,5000);
-	//AJAX ver Num preguntas JQuery
-	function verNumPreguntas(){
-    $(document).ready(function(){
-        $.ajax({url: "NumPreguntas.php", success: function(result){$("#npreguntas").html(result);}});
-        });
-		}
-	
-	</script>
 	</head>
 
 	<body>
+	<div align="right"><a href="logout.php">Logout</a></div>	
 	<center>
 	
 	<div id="npreguntas"><b></b></div>
-	<input type="button" name='ver' id='ver' value="Ver Preguntas" onClick="javascript:verpreguntas()">
+	
 	
 	
 	<div id="verinput"></div>

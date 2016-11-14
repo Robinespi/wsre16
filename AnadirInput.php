@@ -1,9 +1,9 @@
 <?php
 
-$datos=$_POST['num_preg'];
+	$datos=$_POST['num_preg'];
 
-$link = mysqli_connect("localhost","root","","Quiz");
-	//$link = mysqli_connect("mysql.hostinger.es","u349629874_espi","Pepitogrillo","u349629874_quiz");
+	//$link = mysqli_connect("localhost","root","","Quiz");
+	$link = mysqli_connect("mysql.hostinger.es","u349629874_espi","Pepitogrillo","u349629874_quiz");
 	if(!$link)
 	{
 		
@@ -25,7 +25,7 @@ $link = mysqli_connect("localhost","root","","Quiz");
 
 	echo '<form id="insertar" method="post"  name="insertar" enctype="multipart/form-data">';
 	echo	"Codigo";
-	echo	'<input type="text" name="codigo" id="codigo" value="'.$row['Num_preg'].'" disabled="true"><br>';
+	echo	'<input type="text" name="codigo" id="codigo" value="'.$row['Num_Preg'].'" disabled="true"><br>';
 	echo	"Propietario";
 	echo	'<input type="text" name="propietario" id="propietario" value="'.$row['Email'].'" disabled="true"><br>';
 	echo	"Pregunta";

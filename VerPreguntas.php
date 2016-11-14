@@ -6,9 +6,9 @@
 </html>
 
 <?php
-	
-	$link = mysqli_connect("localhost","root","","Quiz");
-	//$link = mysqli_connect("mysql.hostinger.es","u349629874_espi","Pepitogrillo","u349629874_quiz");
+	session_start();
+	//$link = mysqli_connect("localhost","root","","Quiz");
+	$link = mysqli_connect("mysql.hostinger.es","u349629874_espi","Pepitogrillo","u349629874_quiz");
 	if(!$link)
 	{
 		
@@ -35,5 +35,9 @@
 	
 	mysqli_close($link);
 	
+	
+	if(isset($_SESSION['email'])){
+		echo '<div align="right"><a href="logout.php">Logout</a></div>';
+	}
 
 ?>

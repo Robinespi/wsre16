@@ -1,5 +1,19 @@
-<!DOCTYPE html>
+<?php
 
+session_start();
+
+if(isset($_SESSION['email'])){
+	
+	header('location:layout.php');
+	
+}
+
+
+?>
+
+
+
+<!DOCTYPE html>
 <html>
 	<head>
 	<meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
@@ -40,7 +54,7 @@
 	
 	<tr>
 	<td>Contraseña(*):</td>
-	<td><input type="password" name='Contraseñav' id='Contraseñav' value="" onChange="javascript:mismaContra(Contraseña.value,Contraseñav.value)">
+	<td><input type="password" name='Contraseñav' id='Contraseñav' value="">
 	</tr>
 	
 	<tr>
@@ -79,7 +93,7 @@
 	<div id="registrado"></div>
 	</center>
 	
-	<p align='center'><a href='layout.html'>Volver a la pagina de inicio</a></p>
+	<p align='center'><a href='layout.php'>Volver a la pagina de inicio</a></p>
 	</body>
 
 

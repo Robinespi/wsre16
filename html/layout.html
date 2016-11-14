@@ -1,3 +1,10 @@
+<?php
+
+session_start();
+
+?>
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -18,8 +25,16 @@
 	<header class='main' id='h1'>
 		<span class="right"><a href="RegistrarConFoto.php">Registrarse</a></span>
 		<span class="right"><a href="registroV5.html">Registrarse Html5</a></span>
-      		<span class="right"><a href="Login.php">Login</a></span>
-      		<span class="right" style="display:none;"><a href="/logout">Logout</a></span>
+			<?php
+			if(isset($_SESSION['email'])){
+			
+			echo '<span class="right"><a href="/logout">Logout</a></span>';
+			
+			}else{
+			
+			echo '<span class="right"><a href="Login.php">Login</a></span>';
+			}
+			?>
 		<h2>Quiz: el juego de las preguntas</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>

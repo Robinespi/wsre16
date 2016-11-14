@@ -1,4 +1,5 @@
-//verpreguntas();
+verpreguntas();
+setInterval(verpreguntas,3000);
 //AJAX ver preguntas
 function verpreguntas(){
 	
@@ -9,7 +10,7 @@ function verpreguntas(){
 		
 	}
 	
-	xmlhttp.open("POST","VerPreguntasm.php",true);
+	xmlhttp.open("POST","VerPreguntasM.php",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send();
 	
