@@ -2,7 +2,7 @@
 require_once('nusoap-0.9.5/lib/nusoap.php');
 require_once('nusoap-0.9.5/lib/class.wsdlcache.php');
 
-$contraseña=$_POST['contraseña'];
+$contraseña=$_POST['contra'];
 $clave=$_POST['clave'];
 
 //$cliente=new nusoap_client('http://localhost/wsre16/ComprobarContrasena.php?wsdl',true);

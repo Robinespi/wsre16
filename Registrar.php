@@ -9,9 +9,10 @@
 	$apellidos = $_POST['apellidos'];
 	$email = $_POST['email'];
 	$contra = $_POST['contraseña'];
-	$contrasena= MD5($contra);
+	$contrasena= SHA1($contra);
 	$numt = $_POST['numt'];
 	$interes = $_POST['interes'];
+	$intentos = 0;
 	
 	$espe= $_POST['especialidad'];
 	if($espe == 'otra'){
@@ -40,7 +41,7 @@
 			if(!is_uploaded_file($tmp_name)){
 				
 				$ruta2= "images/avatar.jpg";
-				$sql2="INSERT INTO usuario(Nombre,Apellidos,Email,Contrasena,NumeroTelefono,Especialidad,Interes,Imagen,Rol)VALUES('$nombre','$apellidos','$email','$contrasena',$numt,'$especialidad','$interes','$ruta2','$rol')";
+				$sql2="INSERT INTO usuario(Nombre,Apellidos,Email,Contrasena,NumeroTelefono,Especialidad,Interes,Imagen,Rol,Intentos)VALUES('$nombre','$apellidos','$email','$contrasena',$numt,'$especialidad','$interes','$ruta2','$rol','$intentos')";
 				if(!mysqli_query($link,$sql2))
 				{
 		
@@ -58,7 +59,7 @@
 				$directorio_destino = "images";
 				$img_file = $_FILES[$nombrei]['name'];
 				$ruta= $directorio_destino . '/' . $img_file;
-				$sql="INSERT INTO usuario(Nombre,Apellidos,Email,Contrasena,NumeroTelefono,Especialidad,Interes,Imagen,Rol)VALUES('$nombre','$apellidos','$email','$contrasena',$numt,'$especialidad','$interes','$ruta','$rol')";
+				$sql="INSERT INTO usuario(Nombre,Apellidos,Email,Contrasena,NumeroTelefono,Especialidad,Interes,Imagen,Rol,Intentos)VALUES('$nombre','$apellidos','$email','$contrasena',$numt,'$especialidad','$interes','$ruta','$rol','$intentos')";
 				if(!mysqli_query($link,$sql))
 				{
 		

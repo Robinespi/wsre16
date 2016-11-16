@@ -39,4 +39,15 @@ function vPreg($pregunta,$difi,$respuesta,$tematica){
 	return $error;
 }
 
+function vCon($email,$contra,$contrav){
+	$expr="/^([a-z])+[0-9][0-9][0-9]@ikasle\.ehu\.[e]u?[s]$/";
+	$exprc="/^[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]*$/";
+	if($email == '' || !preg_match($expr,$email))	
+		$error=$error.'<p>Email erroneo</p>';
+	if($contra == '' || !preg_match($exprc,$contra))
+		$error = $error.'<p>Inserte una contraseña de mas de 6 caracteres</p>';
+	if(strcmp($contra,$contrav))
+		$error = $error.'<p>Las contras no coinciden</p>';
+}	
 ?>
+

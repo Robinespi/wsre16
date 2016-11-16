@@ -27,6 +27,7 @@
 	<input type='password' name='contrasena' id='contrasena' value=''>
 	<input type="submit" name='login' id='login' value="Login">
 	</form>
+		<p align='center'><a href='CambiarContra.php'>¿Has olvidado la contraseña?</a></p>
 		<p align='center'><a href='layout.php'>Volver a la pagina de inicio</a></p>
 	</center>
 </body>
@@ -44,7 +45,7 @@
 	
 	$usuario = $_POST['usuario'];
 	$pass = $_POST['contrasena'];
-	$contrasena = MD5($pass);
+	$contrasena = SHA1($pass);
 	
 	//$link = mysqli_connect("localhost","root","","Quiz");
 	$link = mysqli_connect("mysql.hostinger.es","u349629874_espi","Pepitogrillo","u349629874_quiz");
@@ -54,11 +55,18 @@
 		echo"Fallo al conectar a la base de datos".$link->connect_error;
 		
 	}
-	$usuarios = mysqli_query($link,"SELECT * FROM usuario WHERE Email='$usuario' and Contrasena='$contrasena'");
+	$usuarioin = mysqli_query($link,"SELECT * FROM usuario WHERE Email='$usuario'");
 	
-	$cont= mysqli_num_rows($usuarios);
+	$int=mysqli_fetch_array($usuarioin);
+	$intentos = $int['Intentos'];
 	
-	if($cont == 1){
+	
+	
+	if($intentos < 3){
+		$usuarios = mysqli_query($link,"SELECT * FROM usuario WHERE Email='$usuario' and Contrasena='$contrasena'");
+	
+		$cont= mysqli_num_rows($usuarios);
+		if($cont == 1){
 			$resultado = mysqli_query($link,"SELECT * FROM conexiones");
 			if(!$resultado){
 		
@@ -89,25 +97,52 @@
 			$row = mysqli_fetch_array($usuarios);
 			
 				if($row['Rol']=="alumno"){
-					
+					$intentos=0;
+					$sql3="Update usuario Set Intentos='$intentos' Where Email='$usuario'";
+					if(!mysqli_query($link,$sql3))
+					{
+		
+					die('Error'.mysqli_error($link));
+		
+					}
+					else{
 					$_SESSION["autentificado"]="Si";
 					$_SESSION["email"]=$usuario;
 					$_SESSION["rol"]=$row['Rol'];
-					header('location:GestionPreguntas.php');
+					header('location:GestionPreguntas.php');}
 					}
 					else if($row['Rol']=="profesor"){
-						
+						$intentos=0;
+						$sql4="Update usuario Set Intentos='$intentos' Where Email='$usuario'";
+						if(!mysqli_query($link,$sql4))
+						{
+		
+						die('Error'.mysqli_error($link));
+		
+						}
+						else{
 						$_SESSION["autentificado"]="Si";
 						$_SESSION["email"]=$usuario;
 						$_SESSION["rol"]=$row['Rol'];
-						header('location:ModificarPreguntas.php');
+						header('location:ModificarPreguntas.php');}
 					}
 			}
 			else{
+					$intentos=$intentos+1;
+					$sql2="Update usuario Set Intentos='$intentos' Where Email='$usuario'";
+				if(!mysqli_query($link,$sql2))
+				{
 		
+					die('Error'.mysqli_error($link));
+		
+				}else
 					header('location:Login.php?errorusu=si');
 		
 					}
+	} else{
+		
+			header('location:cbloqueada.php');
+	}
 	}
 	}
 

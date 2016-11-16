@@ -1,4 +1,4 @@
-var contrav;
+var contraver;
 var emailv;
 
 
@@ -199,19 +199,19 @@ function verificarc(email){
 }
 
 
-function verificarcontra(contraseña,clave){
+function verificarcontra(contra,clave){
 	xmlhttp= new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
 	{
 		if(xmlhttp.readyState==4 && xmlhttp.status==200){document.getElementById("cverifi").innerHTML=xmlhttp.responseText;
-		contrav=xmlhttp.responseText;
+		contraver=xmlhttp.responseText;
 		activarboton();}
 		
 	}
 	
 	
 	
-	if(contraseña==""|| clave==""){
+	if(contra==""|| clave==""){
 		
 		document.getElementById("cverifi").innerHTML="";
 		return;
@@ -219,10 +219,10 @@ function verificarcontra(contraseña,clave){
 	}
 	xmlhttp.open("POST","verificarcontra.php",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xmlhttp.send("contraseña="+contraseña+"&clave="+clave);
+	xmlhttp.send("contra="+contra+"&clave="+clave);
 }
 function activarboton(){
-if( contrav== "VALIDA" && emailv=="SI"){
+if( contraver== "VALIDA" && emailv=="SI"){
 	document.getElementById("Registrar").disabled=false;
 }else { document.getElementById("Registrar").disabled=true;}
 }
